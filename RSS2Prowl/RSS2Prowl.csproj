@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dtx.Rss" Version="1.0.2" />
+    <PackageReference Include="Prowlin" Version="0.9.4456.26422" />
+  </ItemGroup>
+
+</Project>
