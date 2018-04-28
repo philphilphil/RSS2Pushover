@@ -6,7 +6,7 @@ using System.IO;
 using System.Reflection;
 using System.Text;
 
-namespace RSS2Prowl
+namespace RSS2Pushover
 {
     class Service : IJob
     {

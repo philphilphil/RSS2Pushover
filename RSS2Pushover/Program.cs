@@ -4,9 +4,9 @@ using System.IO;
 using System.Net.Http;
 using System.Xml;
 
-namespace RSS2Prowl
+namespace RSS2Pushover
 {
-    class RSS2Prowl
+    class RSS2Pushover
     {
         static void Main(string[] args)
         {

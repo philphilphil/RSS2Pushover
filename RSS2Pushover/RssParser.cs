@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml.Linq;
 
-namespace RSS2Prowl
+namespace RSS2Pushover
 {
     public class FeedParser
     {
@@ -13,7 +13,7 @@ namespace RSS2Prowl
             try
             {
                 XDocument doc = XDocument.Load(url);
-                var entries = from item in doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().Where(i => i.Name.LocalName == "item").Take(20)
+                var entries = from item in doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().Where(i => i.Name.LocalName == "item").Take(5)
                               select new Item
                               {
                                   Content = item.Elements().First(i => i.Name.LocalName == "description").Value,

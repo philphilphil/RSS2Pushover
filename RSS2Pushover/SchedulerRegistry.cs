@@ -6,7 +6,7 @@ using System.Reflection;
 using System.IO;
 using Microsoft.Extensions.Configuration;
 
-namespace RSS2Prowl
+namespace RSS2Pushover
 {
     public class SchedulerRegistry : Registry
     {
