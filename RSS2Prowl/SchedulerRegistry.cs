@@ -20,7 +20,7 @@ namespace RSS2Prowl
 
             string fullFilePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath) + "\\" + Configuration["ArchiveFileName"];
 
-            Schedule(() => new Service(Configuration["RssFeedUrl"], Configuration["ProwlApiKey"], Configuration["ApplicationName"], fullFilePath)).ToRunNow().AndEvery(int.Parse(Configuration["ScanIntervalInMinutes"])).Minutes();
+            Schedule(() => new Service(Configuration["RssFeedUrl"], Configuration["UserApiKey"], Configuration["AppApiKey"], fullFilePath)).ToRunNow().AndEvery(int.Parse(Configuration["ScanIntervalInMinutes"])).Minutes();
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using FluentScheduler;
-using Prowlin;
-using Prowlin.Interfaces;
+using PushoverNet;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,15 +11,15 @@ namespace RSS2Prowl
     class Service : IJob
     {
         public string FeedUrl { get; set; }
-        public string ApiKey { get; set; }
-        public string ApplicationName { get; set; }
+        public string UserApiKey { get; set; }
+        public string AppApiKey { get; set; }
         public string ArchiveFilePath { get; set; }
 
-        public Service(string feedUrl, string apiKey, string appName, string archivePath)
+        public Service(string feedUrl, string userApiKey, string appApiKey, string archivePath)
         {
             this.FeedUrl = feedUrl;
-            this.ApiKey = apiKey;
-            this.ApplicationName = appName;
+            this.UserApiKey = userApiKey;
+            this.AppApiKey = appApiKey;
             this.ArchiveFilePath = archivePath;
         }
 
@@ -41,23 +40,17 @@ namespace RSS2Prowl
                 }
 
                 ConsoleLog("Item found, sending notification..");
-                //sent notification
-                INotification notification = new Prowlin.Notification()
-                {
-                    Application = this.ApplicationName,
-                    Description = "",//item.Content,
-                    Event = item.Title,
-                    Priority = NotificationPriority.Normal,
-                    Url = item.Url
-                };
-                notification.AddApiKey(this.ApiKey);
-
-                ProwlClient prowlClient = new ProwlClient();
-                NotificationResult notificationResult = prowlClient.SendNotification(notification);
+                SentNotification(item);
 
                 //Add to archive file
                 File.AppendAllText(this.ArchiveFilePath, item.Guid + Environment.NewLine);
             }
+        }
+
+        private void SentNotification(Item item)
+        {
+            PushoverClient client = new PushoverClient(this.AppApiKey);
+            client.SendAsync(this.UserApiKey, item.Content, item.Title, new Uri(item.Url));
         }
 
         private void ConsoleLog(string txt)
