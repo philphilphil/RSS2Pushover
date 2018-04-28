@@ -13,7 +13,7 @@ namespace RSS2Pushover
             try
             {
                 XDocument doc = XDocument.Load(url);
-                var entries = from item in doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().Where(i => i.Name.LocalName == "item").Take(5)
+                var entries = from item in doc.Root.Descendants().First(i => i.Name.LocalName == "channel").Elements().Where(i => i.Name.LocalName == "item").Take(10)
                               select new Item
                               {
                                   Content = item.Elements().First(i => i.Name.LocalName == "description").Value,
