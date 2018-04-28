@@ -12,14 +12,8 @@ namespace RSS2Prowl
     {
         static void Main(string[] args)
         {
-            var registry = new Registry();
-
-            registry.Schedule<Service>().ToRunEvery(30).Seconds();
-            JobManager.Initialize(registry);
-
+            JobManager.Initialize(new SchedulerRegistry());
             Console.WriteLine("Starting up... ");
-            Console.WriteLine("Next run at: " + JobManager.GetSchedule("Service").NextRun.ToShortDateString() + " at " + JobManager.GetSchedule("Service").NextRun.ToLongTimeString());
-
             Console.Read();
         }
 
