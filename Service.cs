@@ -32,7 +32,6 @@ namespace RSS2Pushover
 
             foreach (var item in items)
             {
-
                 //Check if notification for this item was sent already
                 if (File.ReadAllText(this.ArchiveFilePath).Contains(item.Guid))
                 {
