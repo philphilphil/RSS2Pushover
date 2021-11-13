@@ -14,6 +14,5 @@ namespace RSS2Pushover
             Console.WriteLine("Starting up... ");
             Console.Read();
         }
-
     }
 }

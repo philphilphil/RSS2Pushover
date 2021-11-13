@@ -14,7 +14,6 @@ namespace RSS2Pushover
 
         public SchedulerRegistry()
         {
-
             var builder = new ConfigurationBuilder().SetBasePath(Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath)).AddJsonFile("appsettings.json");
             Configuration = builder.Build();
 
