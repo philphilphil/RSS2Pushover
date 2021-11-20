@@ -24,8 +24,9 @@ namespace RSS2Pushover
                               };
                 return entries.ToList();
             }
-            catch
+            catch (Exception e)
             {
+                Console.WriteLine("RSS PARSE ERROR " + e.Message);
                 return new List<Item>();
             }
         }
