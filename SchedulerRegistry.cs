@@ -17,7 +17,8 @@ namespace RSS2Pushover
             var builder = new ConfigurationBuilder().SetBasePath(Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath)).AddJsonFile("appsettings.json");
             Configuration = builder.Build();
 
-            string fullFilePath = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath) + "\\" + Configuration["ArchiveFileName"];
+            var runFolder = Path.GetDirectoryName(new Uri(Assembly.GetExecutingAssembly().Location).LocalPath);
+            string fullFilePath =  Path.Combine(runFolder, Configuration["ArchiveFileName"]);
 
             Schedule(() => new Service(Configuration["RssFeedUrl"], Configuration["UserApiKey"], Configuration["AppApiKey"], fullFilePath)).ToRunNow().AndEvery(int.Parse(Configuration["ScanIntervalInMinutes"])).Minutes();
         }
