@@ -35,10 +35,11 @@ namespace RSS2Pushover
                 //Check if notification for this item was sent already
                 if (File.ReadAllText(this.ArchiveFilePath).Contains(item.Guid))
                 {
+                    ConsoleLog("Already sent Item found, skipping..");
                     continue;
                 }
 
-                ConsoleLog("Item found, sending notification..");
+                ConsoleLog("New Item found, sending notification..");
                 SentNotification(item);
 
                 //Add to archive file
